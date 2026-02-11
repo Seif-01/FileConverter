@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>FileConverter</AssemblyName>
+    <RootNamespace>FileConverter</RootNamespace>
+    <ApplicationIcon>FileConverter.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\**" />
+    <Resource Include="FileConverter.ico" />
+  </ItemGroup>
+
+</Project>
