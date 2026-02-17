@@ -1,3 +1,4 @@
+![License](https://img.shields.io/badge/license-MIT-green)
 ## Features
 
 - Drag and drop file upload
@@ -33,3 +34,4 @@
 ## License
 
 MIT License
+
