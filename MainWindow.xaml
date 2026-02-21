@@ -10,7 +10,8 @@
         Drop="Window_Drop"
         DragOver="Window_DragOver"
         Icon="FileConverter.ico">
-    
+
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Assets/background.jpg" Stretch="UniformToFill"/>
@@ -311,3 +312,4 @@
         </Grid>
     </Grid>
 </Window>
+
