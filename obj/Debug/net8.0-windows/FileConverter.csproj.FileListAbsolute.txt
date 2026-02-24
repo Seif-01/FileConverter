@@ -1,0 +1,40 @@
+C:\Users\Seif\Desktop\Files Converter\bin\Debug\net8.0-windows\FileConverter.exe
+C:\Users\Seif\Desktop\Files Converter\bin\Debug\net8.0-windows\FileConverter.deps.json
+C:\Users\Seif\Desktop\Files Converter\bin\Debug\net8.0-windows\FileConverter.runtimeconfig.json
+C:\Users\Seif\Desktop\Files Converter\bin\Debug\net8.0-windows\FileConverter.dll
+C:\Users\Seif\Desktop\Files Converter\bin\Debug\net8.0-windows\FileConverter.pdb
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\App.baml
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter_MarkupCompile.cache
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter.g.resources
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter.AssemblyInfoInputs.cache
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter.AssemblyInfo.cs
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter.csproj.CoreCompileInputs.cache
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter.dll
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\refint\FileConverter.dll
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter.pdb
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\FileConverter.genruntimeconfig.cache
+C:\Users\Seif\Desktop\Files Converter\obj\Debug\net8.0-windows\ref\FileConverter.dll
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\App.baml
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter_MarkupCompile.cache
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter.dll
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\refint\FileConverter.dll
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter.pdb
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\bin\Debug\net8.0-windows\FileConverter.exe
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\bin\Debug\net8.0-windows\FileConverter.deps.json
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\bin\Debug\net8.0-windows\FileConverter.runtimeconfig.json
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\bin\Debug\net8.0-windows\FileConverter.dll
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\bin\Debug\net8.0-windows\FileConverter.pdb
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter.g.resources
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter.AssemblyInfoInputs.cache
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter.AssemblyInfo.cs
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter.csproj.CoreCompileInputs.cache
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\FileConverter.genruntimeconfig.cache
+C:\Users\Seif\Desktop\A\Desktop Folders\Randome Shit\FilesConverter\obj\Debug\net8.0-windows\ref\FileConverter.dll

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Seif\\Desktop\\Files Converter\\github_repository\\FileConverter.csproj": {}
+    "C:\\Users\\Seif\\Desktop\\A\\Desktop Folders\\Randome Shit\\FilesConverter\\FileConverter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Seif\\Desktop\\Files Converter\\github_repository\\FileConverter.csproj": {
+    "C:\\Users\\Seif\\Desktop\\A\\Desktop Folders\\Randome Shit\\FilesConverter\\FileConverter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Seif\\Desktop\\Files Converter\\github_repository\\FileConverter.csproj",
+        "projectUniqueName": "C:\\Users\\Seif\\Desktop\\A\\Desktop Folders\\Randome Shit\\FilesConverter\\FileConverter.csproj",
         "projectName": "FileConverter",
-        "projectPath": "C:\\Users\\Seif\\Desktop\\Files Converter\\github_repository\\FileConverter.csproj",
+        "projectPath": "C:\\Users\\Seif\\Desktop\\A\\Desktop Folders\\Randome Shit\\FilesConverter\\FileConverter.csproj",
         "packagesPath": "C:\\Users\\Seif\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Seif\\Desktop\\Files Converter\\github_repository\\obj\\",
+        "outputPath": "C:\\Users\\Seif\\Desktop\\A\\Desktop Folders\\Randome Shit\\FilesConverter\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Seif\\AppData\\Roaming\\NuGet\\NuGet.Config",
