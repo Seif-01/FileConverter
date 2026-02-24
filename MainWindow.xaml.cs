@@ -4,6 +4,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
+using System.Windows.Threading;
 using FileConverter.Services;
 using FileConverter.Models;
 
@@ -11,22 +13,24 @@ namespace FileConverter
 {
     public partial class MainWindow : Window
     {
-        private FileInfo? currentFile;
-        private string? selectedOutputFormat;
-        private string? convertedFilePath;
-        private readonly FileTypeDetector fileTypeDetector;
-        private readonly ConversionService conversionService;
-        private readonly FFmpegConverter ffmpegConverter;
+        private FileInfo? _currentFile;
+        private string? _selectedOutputFormat;
+        private string? _convertedFilePath;
+        private readonly FileTypeDetector _fileTypeDetector;
+        private readonly ConversionService _conversionService;
+        private readonly FFmpegConverter _ffmpegConverter;
 
         public MainWindow()
         {
             InitializeComponent();
-            fileTypeDetector = new FileTypeDetector();
-            conversionService = new ConversionService();
-            ffmpegConverter = new FFmpegConverter();
+            _fileTypeDetector = new FileTypeDetector();
+            _conversionService = new ConversionService();
+            _ffmpegConverter = new FFmpegConverter();
 
             QualitySlider.ValueChanged += QualitySlider_ValueChanged;
         }
+
+        #region Upload Screen Events
 
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
@@ -44,6 +48,7 @@ namespace FileConverter
                 }
             }
 
+            // Reset drop zone appearance
             DropZone.BorderThickness = new Thickness(2);
             DropZone.Opacity = 1.0;
         }
@@ -54,6 +59,7 @@ namespace FileConverter
             {
                 e.Effects = DragDropEffects.Copy;
                 
+                // Highlight drop zone
                 DropZone.BorderThickness = new Thickness(3);
                 DropZone.Opacity = 0.9;
             }
@@ -64,6 +70,10 @@ namespace FileConverter
             e.Handled = true;
         }
 
+        #endregion
+
+        #region Conversion Screen Events
+
         private void ChangeFile_Click(object sender, RoutedEventArgs e)
         {
             SelectFile();
@@ -73,7 +83,7 @@ namespace FileConverter
         {
             if (sender is Button button && button.Tag is string format)
             {
-                selectedOutputFormat = format;
+                _selectedOutputFormat = format;
                 StartConversion(format);
             }
         }
@@ -82,33 +92,37 @@ namespace FileConverter
         {
             if (QualityValueText != null)
             {
-                QualityValueText.Text = $"Quality: {(int)e.NewValue}%";
+                QualityValueText.Text = $"{(int)e.NewValue}%";
             }
         }
 
+        #endregion
+
+        #region Download Screen Events
+
         private void Download_Click(object sender, RoutedEventArgs e)
         {
-            if (currentFile == null || string.IsNullOrEmpty(selectedOutputFormat))
+            if (_currentFile == null || string.IsNullOrEmpty(_selectedOutputFormat))
                 return;
 
             SaveFileDialog saveDialog = new SaveFileDialog
             {
-                FileName = Path.GetFileNameWithoutExtension(currentFile.Name) + "." + selectedOutputFormat.ToLower(),
-                Filter = $"{selectedOutputFormat.ToUpper()} Files|*.{selectedOutputFormat.ToLower()}|All Files|*.*",
-                DefaultExt = selectedOutputFormat.ToLower()
+                FileName = Path.GetFileNameWithoutExtension(_currentFile.Name) + "." + _selectedOutputFormat.ToLower(),
+                Filter = $"{_selectedOutputFormat.ToUpper()} Files|*.{_selectedOutputFormat.ToLower()}|All Files|*.*",
+                DefaultExt = _selectedOutputFormat.ToLower()
             };
 
             if (saveDialog.ShowDialog() == true)
             {
                 try
                 {
-                    if (!string.IsNullOrEmpty(convertedFilePath) && File.Exists(convertedFilePath))
+                    if (!string.IsNullOrEmpty(_convertedFilePath) && File.Exists(_convertedFilePath))
                     {
-                        File.Copy(convertedFilePath, saveDialog.FileName, true);
+                        File.Copy(_convertedFilePath, saveDialog.FileName, true);
                     }
                     else
                     {
-                        File.Copy(currentFile.FullName, saveDialog.FileName, true);
+                        File.Copy(_currentFile.FullName, saveDialog.FileName, true);
                     }
                     
                     MessageBox.Show($"File saved successfully to:\n{saveDialog.FileName}", 
@@ -127,6 +141,10 @@ namespace FileConverter
             ResetToUploadScreen();
         }
 
+        #endregion
+
+        #region File Processing
+
         private void SelectFile()
         {
             OpenFileDialog openDialog = new OpenFileDialog
@@ -134,7 +152,7 @@ namespace FileConverter
                 Title = "Select a file to convert",
                 Filter = "All Files|*.*|" +
                         "Documents|*.pdf;*.doc;*.docx;*.txt;*.rtf;*.odt|" +
-                        "Images|*.jpg;*.jpeg;*.png;*.gif;*.bmp;*.webp;*.svg;*.ico|" +
+                        "Images|*.jpg;*.jpeg;*.jfif;*.png;*.gif;*.bmp;*.webp;*.svg;*.ico;*.tiff;*.tif;*.heic;*.avif|" +
                         "Videos|*.mp4;*.avi;*.mkv;*.mov;*.wmv;*.flv;*.webm|" +
                         "Audio|*.mp3;*.wav;*.flac;*.aac;*.ogg;*.wma;*.m4a|" +
                         "Archives|*.zip;*.rar;*.7z;*.tar;*.gz"
@@ -150,14 +168,18 @@ namespace FileConverter
         {
             try
             {
-                currentFile = new FileInfo(filePath);
+                _currentFile = new FileInfo(filePath);
                 
-                var fileType = fileTypeDetector.DetectFileType(currentFile);
+                // Detect file type
+                var fileType = _fileTypeDetector.DetectFileType(_currentFile);
                 
+                // Update UI with file information
                 UpdateFileInformation(fileType);
                 
+                // Show conversion options
                 ShowConversionOptions(fileType);
                 
+                // Switch to conversion screen
                 SwitchToConversionScreen();
             }
             catch (Exception ex)
@@ -169,35 +191,42 @@ namespace FileConverter
 
         private void UpdateFileInformation(DetectedFileType fileType)
         {
-            if (currentFile == null) return;
+            if (_currentFile == null) return;
 
-            FileNameText.Text = currentFile.Name;
+            // Update file name
+            FileNameText.Text = _currentFile.Name;
 
+            // Update file type and icon
             FileIconText.Text = fileType.Icon;
             FileTypeText.Text = $"{fileType.Category} • {fileType.Format.ToUpper()} Format";
 
-            FileSizeText.Text = FormatFileSize(currentFile.Length);
+            // Update file size
+            FileSizeText.Text = FormatFileSize(_currentFile.Length);
         }
 
         private void ShowConversionOptions(DetectedFileType fileType)
         {
+            // Clear existing options
             RecommendedConversions.Children.Clear();
             AllConversions.Children.Clear();
 
-            var conversions = conversionService.GetConversionOptions(fileType.Category, fileType.Format);
+            var conversions = _conversionService.GetConversionOptions(fileType.Category, fileType.Format);
 
+            // Add recommended conversions
             foreach (var format in conversions.Recommended)
             {
                 var button = CreateConversionButton(format, true);
                 RecommendedConversions.Children.Add(button);
             }
 
+            // Add all available conversions
             foreach (var format in conversions.AllFormats)
             {
                 var button = CreateConversionButton(format, false);
                 AllConversions.Children.Add(button);
             }
 
+            // Show quality settings for image/video conversions
             if (fileType.Category == FileCategory.Image || fileType.Category == FileCategory.Video)
             {
                 QualitySettingsPanel.Visibility = Visibility.Visible;
@@ -212,17 +241,21 @@ namespace FileConverter
         {
             var button = new Button
             {
-                Content = isRecommended ? $"⭐ {format.ToUpper()}" : format.ToUpper(),
+                Content = isRecommended ? $"★  {format.ToUpper()}" : format.ToUpper(),
                 Tag = format,
-                Style = (Style)FindResource("ConversionButton")
+                Style = (Style)FindResource(isRecommended ? "RecommendedButton" : "ConversionButton")
             };
             button.Click += ConversionOption_Click;
             return button;
         }
 
+        #endregion
+
+        #region Conversion Process
+
         private async void StartConversion(string targetFormat)
         {
-            if (currentFile == null) return;
+            if (_currentFile == null) return;
 
             SwitchToProgressScreen();
 
@@ -231,7 +264,7 @@ namespace FileConverter
 
             try
             {
-                var fileType = fileTypeDetector.DetectFileType(currentFile);
+                var fileType = _fileTypeDetector.DetectFileType(_currentFile);
                 
                 if (fileType.Category == FileCategory.Video && targetFormat.ToLower() == "gif")
                 {
@@ -254,15 +287,15 @@ namespace FileConverter
 
         private async Task ConvertVideoToGif(string targetFormat)
         {
-            if (currentFile == null) return;
+            if (_currentFile == null) return;
 
-            if (!ffmpegConverter.IsFFmpegAvailable())
+            if (!_ffmpegConverter.IsFFmpegAvailable())
             {
                 throw new Exception("FFmpeg is not installed. Please install FFmpeg to convert videos to GIF.\n\nDownload from: https://ffmpeg.org/download.html");
             }
 
             var tempOutputPath = Path.Combine(Path.GetTempPath(), 
-                Path.GetFileNameWithoutExtension(currentFile.Name) + ".gif");
+                Path.GetFileNameWithoutExtension(_currentFile.Name) + ".gif");
 
             var quality = (int)QualitySlider.Value;
 
@@ -282,14 +315,14 @@ namespace FileConverter
                 });
             });
 
-            bool success = await ffmpegConverter.ConvertVideoToGif(currentFile.FullName, tempOutputPath, quality, progress);
+            bool success = await _ffmpegConverter.ConvertVideoToGif(_currentFile.FullName, tempOutputPath, quality, progress);
 
             if (!success)
             {
                 throw new Exception("Video conversion failed. Please check if the video file is valid.");
             }
 
-            convertedFilePath = tempOutputPath;
+            _convertedFilePath = tempOutputPath;
 
             ConversionProgressBar.Value = 100;
             ProgressPercentText.Text = "100%";
@@ -315,6 +348,10 @@ namespace FileConverter
             }
         }
 
+        #endregion
+
+        #region Screen Transitions
+
         private void SwitchToConversionScreen()
         {
             UploadScreen.Visibility = Visibility.Collapsed;
@@ -330,6 +367,7 @@ namespace FileConverter
             ProgressScreen.Visibility = Visibility.Visible;
             DownloadScreen.Visibility = Visibility.Collapsed;
 
+            // Reset progress
             ConversionProgressBar.Value = 0;
             ProgressPercentText.Text = "0%";
         }
@@ -351,15 +389,19 @@ namespace FileConverter
             ProgressScreen.Visibility = Visibility.Collapsed;
             DownloadScreen.Visibility = Visibility.Collapsed;
 
-            if (!string.IsNullOrEmpty(convertedFilePath) && File.Exists(convertedFilePath))
+            if (!string.IsNullOrEmpty(_convertedFilePath) && File.Exists(_convertedFilePath))
             {
-                try { File.Delete(convertedFilePath); } catch { }
+                try { File.Delete(_convertedFilePath); } catch { }
             }
 
-            currentFile = null;
-            selectedOutputFormat = null;
-            convertedFilePath = null;
+            _currentFile = null;
+            _selectedOutputFormat = null;
+            _convertedFilePath = null;
         }
+
+        #endregion
+
+        #region Utility Methods
 
         private string FormatFileSize(long bytes)
         {
@@ -375,5 +417,7 @@ namespace FileConverter
 
             return $"{len:0.##} {sizes[order]}";
         }
+
+        #endregion
     }
 }
