@@ -3,42 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="DarkTealBrush" Color="#0A1E2E"/>
-        <SolidColorBrush x:Key="TealBrush" Color="#1A4D5C"/>
-        <SolidColorBrush x:Key="LightTealBrush" Color="#2D7B8C"/>
-        <SolidColorBrush x:Key="AccentRedBrush" Color="#D84545"/>
-        <SolidColorBrush x:Key="LightGrayBrush" Color="#E8E6E1"/>
-        <SolidColorBrush x:Key="WhiteBrush" Color="#FFFFFF"/>
-        <SolidColorBrush x:Key="GlassBrush" Color="#80FFFFFF"/>
-        
+
+        <!-- ══════════════════════════════════════════ -->
+        <!--              Color Palette                 -->
+        <!-- ══════════════════════════════════════════ -->
+        <SolidColorBrush x:Key="DarkTealBrush"  Color="#0A1E2E"/>
+        <SolidColorBrush x:Key="TealBrush"       Color="#1A4D5C"/>
+        <SolidColorBrush x:Key="LightTealBrush"  Color="#2D7B8C"/>
+        <SolidColorBrush x:Key="AccentRedBrush"  Color="#D84545"/>
+        <SolidColorBrush x:Key="LightGrayBrush"  Color="#E8E6E1"/>
+        <SolidColorBrush x:Key="WhiteBrush"      Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="GlassBrush"      Color="#80FFFFFF"/>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!--         Glass Upload Button Style          -->
+        <!-- ══════════════════════════════════════════ -->
         <Style x:Key="GlassButton" TargetType="Button">
-            <Setter Property="Background" Value="#40FFFFFF"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#60FFFFFF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="20,12"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background"       Value="#38FFFFFF"/>
+            <Setter Property="Foreground"       Value="White"/>
+            <Setter Property="BorderBrush"      Value="#70FFFFFF"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="Padding"          Value="28,14"/>
+            <Setter Property="FontSize"         Value="15"/>
+            <Setter Property="FontWeight"       Value="SemiBold"/>
+            <Setter Property="Cursor"           Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="12"
+                                CornerRadius="14"
                                 Padding="{TemplateBinding Padding}">
                             <Border.Effect>
-                                <DropShadowEffect Color="Black" Opacity="0.3" ShadowDepth="2" BlurRadius="8"/>
+                                <DropShadowEffect Color="Black" Opacity="0.35" ShadowDepth="3" BlurRadius="14"/>
                             </Border.Effect>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#60FFFFFF"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#58FFFFFF"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#A0FFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#30FFFFFF"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#28FFFFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -46,33 +55,38 @@
             </Setter>
         </Style>
 
+        <!-- ══════════════════════════════════════════ -->
+        <!--      Conversion Format Button Style        -->
+        <!-- ══════════════════════════════════════════ -->
         <Style x:Key="ConversionButton" TargetType="Button">
-            <Setter Property="Background" Value="#30FFFFFF"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#40FFFFFF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="15,10"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background"       Value="#28FFFFFF"/>
+            <Setter Property="Foreground"       Value="White"/>
+            <Setter Property="BorderBrush"      Value="#45FFFFFF"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="Padding"          Value="18,10"/>
+            <Setter Property="Margin"           Value="5,4"/>
+            <Setter Property="FontSize"         Value="13"/>
+            <Setter Property="FontWeight"       Value="Medium"/>
+            <Setter Property="Cursor"           Value="Hand"/>
+            <Setter Property="MinWidth"         Value="80"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="8"
+                                CornerRadius="10"
                                 Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#50FFFFFF"/>
-                                <Setter Property="BorderBrush" Value="#80FFFFFF"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#48FFFFFF"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#80FFFFFF"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#20FFFFFF"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#18FFFFFF"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -80,34 +94,41 @@
             </Setter>
         </Style>
 
-        <Style x:Key="DownloadButton" TargetType="Button">
-            <Setter Property="Background" Value="#D84545"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#FF6B6B"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="25,12"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Cursor" Value="Hand"/>
+        <!-- ══════════════════════════════════════════ -->
+        <!--      Recommended Format Button Style       -->
+        <!-- ══════════════════════════════════════════ -->
+        <Style x:Key="RecommendedButton" TargetType="Button">
+            <Setter Property="Background"       Value="#40D84545"/>
+            <Setter Property="Foreground"       Value="White"/>
+            <Setter Property="BorderBrush"      Value="#80D84545"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="Padding"          Value="18,10"/>
+            <Setter Property="Margin"           Value="5,4"/>
+            <Setter Property="FontSize"         Value="13"/>
+            <Setter Property="FontWeight"       Value="SemiBold"/>
+            <Setter Property="Cursor"           Value="Hand"/>
+            <Setter Property="MinWidth"         Value="80"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="12"
+                                CornerRadius="10"
                                 Padding="{TemplateBinding Padding}">
                             <Border.Effect>
-                                <DropShadowEffect Color="#D84545" Opacity="0.5" ShadowDepth="2" BlurRadius="12"/>
+                                <DropShadowEffect Color="#D84545" Opacity="0.35" ShadowDepth="0" BlurRadius="10"/>
                             </Border.Effect>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF6B6B"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#65D84545"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#C0D84545"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#C03535"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#28D84545"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -115,30 +136,177 @@
             </Setter>
         </Style>
 
+        <!-- ══════════════════════════════════════════ -->
+        <!--          Download Button Style             -->
+        <!-- ══════════════════════════════════════════ -->
+        <Style x:Key="DownloadButton" TargetType="Button">
+            <Setter Property="Background"       Value="#D84545"/>
+            <Setter Property="Foreground"       Value="White"/>
+            <Setter Property="BorderBrush"      Value="#FF6B6B"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="Padding"          Value="30,15"/>
+            <Setter Property="FontSize"         Value="16"/>
+            <Setter Property="FontWeight"       Value="Bold"/>
+            <Setter Property="Cursor"           Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="14"
+                                Padding="{TemplateBinding Padding}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#D84545" Opacity="0.55" ShadowDepth="2" BlurRadius="16"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#E85555"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#FF8888"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#B83535"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!--        Secondary Action Button Style       -->
+        <!-- ══════════════════════════════════════════ -->
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="Background"       Value="Transparent"/>
+            <Setter Property="Foreground"       Value="#C0FFFFFF"/>
+            <Setter Property="BorderBrush"      Value="#50FFFFFF"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="Padding"          Value="22,11"/>
+            <Setter Property="FontSize"         Value="14"/>
+            <Setter Property="FontWeight"       Value="Regular"/>
+            <Setter Property="Cursor"           Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="12"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#20FFFFFF"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#80FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#10FFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!--           Progress Bar Style               -->
+        <!-- ══════════════════════════════════════════ -->
         <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
-            <Setter Property="Height" Value="8"/>
-            <Setter Property="Background" Value="#20FFFFFF"/>
-            <Setter Property="Foreground" Value="#D84545"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height"           Value="10"/>
+            <Setter Property="Background"       Value="#25FFFFFF"/>
+            <Setter Property="Foreground"       Value="#D84545"/>
+            <Setter Property="BorderThickness"  Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ProgressBar">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
-                            <Grid>
-                                <Border Name="PART_Track" CornerRadius="4"/>
-                                <Border Name="PART_Indicator" 
-                                        HorizontalAlignment="Left" 
-                                        Background="{TemplateBinding Foreground}"
-                                        CornerRadius="4">
-                                    <Border.Effect>
-                                        <DropShadowEffect Color="#D84545" Opacity="0.6" ShadowDepth="0" BlurRadius="8"/>
-                                    </Border.Effect>
-                                </Border>
-                            </Grid>
-                        </Border>
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="5"/>
+                            <Border x:Name="PART_Indicator"
+                                    HorizontalAlignment="Left"
+                                    Background="{TemplateBinding Foreground}"
+                                    CornerRadius="5">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="#D84545" Opacity="0.7" ShadowDepth="0" BlurRadius="10"/>
+                                </Border.Effect>
+                            </Border>
+                        </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!--           Slider Style                     -->
+        <!-- ══════════════════════════════════════════ -->
+        <Style x:Key="ModernSlider" TargetType="Slider">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Track x:Name="PART_Track" Grid.Row="1">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="Slider.DecreaseLarge">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="RepeatButton">
+                                                <Border Background="#D84545" Height="6" CornerRadius="3">
+                                                    <Border.Effect>
+                                                        <DropShadowEffect Color="#D84545" Opacity="0.5" ShadowDepth="0" BlurRadius="8"/>
+                                                    </Border.Effect>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="Slider.IncreaseLarge">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="RepeatButton">
+                                                <Border Background="#30FFFFFF" Height="6" CornerRadius="3"/>
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border Width="18" Height="18" CornerRadius="9"
+                                                        Background="White">
+                                                    <Border.Effect>
+                                                        <DropShadowEffect Color="#D84545" Opacity="0.6" ShadowDepth="0" BlurRadius="10"/>
+                                                    </Border.Effect>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ══════════════════════════════════════════ -->
+        <!--       Glass Panel / Card Style             -->
+        <!-- ══════════════════════════════════════════ -->
+        <Style x:Key="GlassCard" TargetType="Border">
+            <Setter Property="Background"       Value="#28FFFFFF"/>
+            <Setter Property="BorderBrush"      Value="#45FFFFFF"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="CornerRadius"     Value="18"/>
+        </Style>
+
     </Application.Resources>
 </Application>
